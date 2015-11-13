@@ -20,3 +20,4 @@ private:
 	SDL_Rect dstRect;
 	bool running;
 };
+//create by John Blake
