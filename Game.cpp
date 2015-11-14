@@ -18,7 +18,7 @@ bool Game::init(const char* title,int x,int y,int w,int h,Uint32 flags){
 	if(SDL_Init(SDL_INIT_EVERYTHING)==0){
 		pWindow=SDL_CreateWindow(title,x,y,w,h,flags);
 		pRenderer=SDL_CreateRenderer(pWindow,-1,0);	
-		textureManager.load("images/sprite.png","player",pRenderer);//create texture* textureMap["player"]
+		TextureManager::Instance()->load("images/sprite.png","player",pRenderer);//create texture* textureMap["player"]
 		return true;
 	}else{
 		return false;
@@ -52,6 +52,6 @@ void Game::clean(){
 void Game::render(){
 	SDL_SetRenderDrawColor(pRenderer,0,80,0,255);
 	SDL_RenderClear(pRenderer);//clear the window to red
-	textureManager.drawFrame(pRenderer,"player",currentFrame,100,150,0,0,SDL_FLIP_NONE);
+	TextureManager::Instance()->drawFrame(pRenderer,"player",currentFrame,100,150,0,0,SDL_FLIP_NONE);
 	SDL_RenderPresent(pRenderer);
 }
