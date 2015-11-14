@@ -1,9 +1,15 @@
 #include "TextureManager.h"
 #include "SDL_image.h"
 
-TextureManager::TextureManager(void)
-{
+TextureManager* TextureManager::pInstance=NULL;
+
+TextureManager* TextureManager::Instance(){
+	if(pInstance==NULL){
+		pInstance=new TextureManager();
+	}
+	return pInstance;
 }
+
 bool TextureManager::load(std::string filename,std::string id,SDL_Renderer* renderer){
 	SDL_Surface* tempSurface=IMG_Load(filename.c_str());//using c_str() to fit the parameter's type
 	SDL_Texture* pTexture=SDL_CreateTextureFromSurface(renderer,tempSurface);
@@ -37,8 +43,4 @@ void TextureManager::drawFrame(SDL_Renderer* pRenderer,std::string id,int curren
 		srcRect.x=3*srcWidth;
 	srcRect.y=0;
 	SDL_RenderCopyEx(pRenderer,textureMap[id],&srcRect,&dstRect,0,0,flip);
-}
-
-TextureManager::~TextureManager(void)
-{
 }
