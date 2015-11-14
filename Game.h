@@ -16,7 +16,6 @@ public:
 private:
 	SDL_Window* pWindow;
 	SDL_Renderer* pRenderer;
-	TextureManager textureManager;
 	int currentFrame;
 	bool running;
 };
